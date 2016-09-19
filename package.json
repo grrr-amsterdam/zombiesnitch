@@ -4,7 +4,6 @@
   "description": "Script to check dead links in the Schoolwijzer project, for the City of Amsterdam.",
   "main": "index.js",
   "scripts": {
-    "start": "blc https://schoolwijzer.amsterdam.nl/nl/ -roe --filter-level=2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +17,7 @@
   },
   "homepage": "https://github.com/grrr-amsterdam/schoolwijzer-dead-link-checker#readme",
   "dependencies": {
-    "broken-link-checker": "^0.7.3"
+    "broken-link-checker": "^0.7.3",
+    "raven": "^0.12.1"
   }
 }
