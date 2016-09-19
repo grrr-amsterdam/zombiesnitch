@@ -1,6 +1,6 @@
 {
   "name": "schoolwijzer-dead-link-checker",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Script to check dead links in the Schoolwijzer project, for the City of Amsterdam.",
   "main": "index.js",
   "scripts": {
