@@ -1,0 +1,23 @@
+{
+  "name": "schoolwijzer-dead-link-checker",
+  "version": "1.0.0",
+  "description": "Script to check dead links in the Schoolwijzer project, for the City of Amsterdam.",
+  "main": "index.js",
+  "scripts": {
+    "start": "blc https://schoolwijzer.amsterdam.nl/nl/ -roe --filter-level=2",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grrr-amsterdam/schoolwijzer-dead-link-checker.git"
+  },
+  "author": "David Spreekmeester <david@grrr.nl>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grrr-amsterdam/schoolwijzer-dead-link-checker/issues"
+  },
+  "homepage": "https://github.com/grrr-amsterdam/schoolwijzer-dead-link-checker#readme",
+  "dependencies": {
+    "broken-link-checker": "^0.7.3"
+  }
+}
