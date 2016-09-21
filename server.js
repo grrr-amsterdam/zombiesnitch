@@ -1,50 +1,50 @@
 #! /usr/bin/env node
 var blc = require("broken-link-checker");
+var report = require("./report.js");
 
-var siteUrl = 'https://schoolwijzer.amsterdam.nl/nl/';
+var siteUrl = process.env.ZOMBIESNITCH_URL;
+if (!siteUrl) {
+    throw "No site url provided as environment variable. Please set ZOMBIESNITCH_URL.";
+}
+
 var options = {
     filterLevel: 2,
-    excludeExternalLinks: true
-};
-
-//blc https://schoolwijzer.amsterdam.nl/nl/ -roe --filter-level=2
-
-var report = {
-    links: {
-        valid: 0,
-        broken: 0,
-        getTotal: function() {
-            return this.broken + this.valid;
-        }
-    },
+    //excludeExternalLinks: true
+    //options.honorRobotExclusions
 };
 
 var processLink = function(result, customData) {
-    console.log("Broken links: "
-                + report.links.broken
-                + ' / '
-                + report.links.getTotal()
-    );
+    //console.log(report.printLine(result));
 
-    if (result.broken) {
-        console.log(result);
-        report.links.broken++;
+    if (
+        result.broken &&
+        result.html.attrs.rel !== 'dns-prefetch'   
+    ) {
+        //console.log(result);
+        report.links.broken.push({
+            url: result.url.resolved,
+            reason: result.brokenReason
+        });
+        //console.log(report.links.broken);
         return;
     }
 
     report.links.valid++;
 };
 
-var siteChecker = new blc.SiteChecker(options, {link: processLink});
+var finalize = function() {
+    report.printFinalReport();
 
-//var siteChecker = new blc.SiteChecker(options, {
-    //robots: function(robots, customData){},
-    //html: function(tree, robots, response, pageUrl, customData){},
-    //junk: function(result, customData){},
-    //link: function(result, customData){},
-    //page: function(error, pageUrl, customData){},
-    //site: function(error, siteUrl, customData){},
-    //end: function(){}
-//});
+    if (!report.links.broken.length) {
+        process.exit();
+    }
+
+    process.exit(1);
+};
+
+var siteChecker = new blc.SiteChecker(options, {
+    link: processLink,
+    end: finalize 
+});
 
 siteChecker.enqueue(siteUrl);
