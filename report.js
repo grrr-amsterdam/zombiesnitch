@@ -20,7 +20,8 @@ module.exports = {
         for (var i in this.links.broken) {
             output.push(
                 this.links.broken[i].reason +
-                " " + this.links.broken[i].url
+                ' ' + this.links.broken[i].url +
+                "\n\tfrom " + this.links.broken[i].base
             );
         }
 
