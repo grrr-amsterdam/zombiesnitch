@@ -40,12 +40,25 @@ module.exports = {
 
     getFinalReport: function() {
         var output = [];
-        output.push(this.links.getTotal() + ' links scanned.');
+        var broken = this.links.getBroken();
+        var errorMsg = '😕  There ' +
+            (broken === 1
+             ? 'was'
+             : 'were'
+            ) + ' ' + broken +
+            ' broken link' +
+            (broken > 1
+             ? 's'
+             : ''
+            ) + ' found.'
+        ;
 
-        output.push(!this.links.getBroken()
+        output.push(!broken
             ? '🤗  No broken links!'
-            : '😕  There were broken links found.'
+            : errorMsg
         );
+
+        output.push(this.links.getTotal() + ' links scanned.');
 
         if (this.links.getBroken()) {
             output.push(this.renderBroken());
