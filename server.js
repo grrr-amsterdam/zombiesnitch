@@ -9,8 +9,33 @@ var options = {
 
 //blc https://schoolwijzer.amsterdam.nl/nl/ -roe --filter-level=2
 
+var report = {
+    links: {
+        valid: 0,
+        broken: 0,
+        getTotal: function() {
+            return this.broken + this.valid;
+        }
+    },
+};
 
-var siteChecker = new blc.SiteChecker(options);
+var processLink = function(result, customData) {
+    console.log("Broken links: "
+                + report.links.broken
+                + ' / '
+                + report.links.getTotal()
+    );
+
+    if (result.broken) {
+        console.log(result);
+        report.links.broken++;
+        return;
+    }
+
+    report.links.valid++;
+};
+
+var siteChecker = new blc.SiteChecker(options, {link: processLink});
 
 //var siteChecker = new blc.SiteChecker(options, {
     //robots: function(robots, customData){},
