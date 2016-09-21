@@ -1,13 +1,10 @@
 var raven = require("raven");
+var client = new raven.Client(process.env.ZOMBIESNITCH_SENTRY_URL);
 
 module.exports = {
-    sentryUrl: process.env.ZOMBIESNITCH_SENTRY_URL,
-
-    client: new raven.Client(this.sentryUrl),
-
     send: function(message) {
-        console.log('Sending broken links to Sentry:'); 
-        this.client.captureMessage(message);
-        console.log('Sent.');
+        process.stdout.write('Sending broken links to Sentry: '); 
+        client.captureMessage(message);
+        process.stdout.write('√ Sent.'); 
     },
 };
