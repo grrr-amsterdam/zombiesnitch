@@ -1,4 +1,4 @@
-# ZombieSnitch
+# ZombieSnitch ☠️
 
 _Crawls your site, in search of dead links._
 
@@ -13,5 +13,34 @@ You can schedule this script with a cronjob.
 It optionally reports to the [Sentry](https://sentry.io) error reporting service.
 
 
+
+____________________
+
+## Usage
+
+1. Set the required environment variables in your shell or scripted context:
+
+   ```
+   ZOMBIESNITCH_URL = https://example.com/
+   ZOMBIESNITCH_SENTRY_URL = https://****:****@sentry.io/****
+   ```
+
+2. Execute the node script:
+
+   ```
+   $ node server.js
+   ```
+
+   Or use `npm`:
+
+   ```
+   $ npm start
+   ```
+
+
+
+_Happy undead lynching!_ 💫
+
+____________________
 
 Agency: [Grrr Amsterdam](https://grrr.nl)
