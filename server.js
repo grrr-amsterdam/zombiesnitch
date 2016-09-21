@@ -44,7 +44,7 @@ var finalize = function() {
     console.log(report.getFinalReport());
 
     if (report.links.getBroken()) {
-        //service.send(report.getFinalReport());
+        service.send(report.getFinalReport());
     }
 };
 
