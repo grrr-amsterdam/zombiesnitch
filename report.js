@@ -21,7 +21,8 @@ module.exports = {
             output.push(
                 this.links.broken[i].reason +
                 ' ' + this.links.broken[i].url +
-                "\n\tfrom " + this.links.broken[i].base
+                "\n\tfrom " + this.links.broken[i].base +
+                ' on line ' + this.links.broken[i].line
             );
         }
 

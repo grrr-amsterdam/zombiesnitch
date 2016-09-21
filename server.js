@@ -30,7 +30,8 @@ var processLink = function(result, customData) {
         report.links.broken.push({
             url: result.url.resolved,
             reason: result.brokenReason,
-            base: result.base.resolved || null
+            base: result.base.resolved || null,
+            line: result.html.location.line
         });
         //console.log(report.links.broken);
         return;
