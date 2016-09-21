@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 var blc = require("broken-link-checker");
 var report = require("./report.js");
+var service = require('./service.js');
 
 var siteUrl = process.env.ZOMBIESNITCH_URL;
 if (!siteUrl) {
@@ -14,6 +15,7 @@ var options = {
 };
 
 var processLink = function(result, customData) {
+    process.stdout.write('Scanned ' + report.links.getTotal() + " urls.\r");
     //console.log(report.printLine(result));
 
     if (
@@ -33,13 +35,11 @@ var processLink = function(result, customData) {
 };
 
 var finalize = function() {
-    report.printFinalReport();
+    console.log(report.getFinalReport());
 
-    if (!report.links.broken.length) {
-        process.exit();
+    if (report.links.getBroken()) {
+        service.send(report.getFinalReport());
     }
-
-    process.exit(1);
 };
 
 var siteChecker = new blc.SiteChecker(options, {

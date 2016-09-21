@@ -15,16 +15,16 @@ module.exports = {
 
     },
 
-    printBroken: function() {
-        console.log("\n");
-
+    renderBroken: function() {
+        var output = [];
         for (var i in this.links.broken) {
-            console.log(
-                this.links.broken[i].reason
-                + " "
-                + this.links.broken[i].url
+            output.push(
+                this.links.broken[i].reason +
+                " " + this.links.broken[i].url
             );
         }
+
+        return output.join("\n");
     },
 
     printLine: function(blcLinkResult) {
@@ -37,17 +37,19 @@ module.exports = {
         ;
     },
 
-    printFinalReport: function() {
-        console.log(
-            this.links.getTotal()
-            + ' links scanned.'
+    getFinalReport: function() {
+        var output = [];
+        output.push(this.links.getTotal() + ' links scanned.');
+
+        output.push(!this.links.getBroken()
+            ? '🤗  No broken links!'
+            : '😕  There were broken links found.'
         );
 
-        if (!this.links.getBroken()) {
-            console.log('🤗  No broken links!');
-            return;
+        if (this.links.getBroken()) {
+            output.push(this.renderBroken());
         }
 
-        this.printBroken();
-    }    
+        return output.join("\n");
+    },
 };
