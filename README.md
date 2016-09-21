@@ -10,7 +10,7 @@ A script that crawls a website, looking for dead links and broken pages.
 
 You can schedule this script with a cronjob.
 
-It optionally reports to the [Sentry](https://sentry.io) error reporting service.
+It reports to the [Sentry](https://sentry.io) error reporting service.
 
 
 
