@@ -9,6 +9,9 @@ var siteUrl = process.env.ZOMBIESNITCH_URL;
 if (!siteUrl) {
     throw "No site url provided as environment variable. Please set ZOMBIESNITCH_URL.";
 }
+if (!process.env.ZOMBIESNITCH_SENTRY_URL) {
+    throw "No Sentry url provided as environment variable. Please set ZOMBIESNITCH_SENTRY_URL.";
+}
 
 var blcOptions = {
     filterLevel: 2,
