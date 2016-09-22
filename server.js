@@ -1,54 +1,42 @@
 #! /usr/bin/env node
 var blc = require("broken-link-checker");
-var report = require("./report.js");
-var service = require('./service.js');
+var report = require("./lib/report.js");
+var service = require('./lib/service.js');
+var errorStack = require('./lib/error-stack.js');
+var scannedUrl = require('./lib/scanned-url.js');
 
 var siteUrl = process.env.ZOMBIESNITCH_URL;
 if (!siteUrl) {
     throw "No site url provided as environment variable. Please set ZOMBIESNITCH_URL.";
 }
 
-var options = {
+var blcOptions = {
     filterLevel: 2,
     //excludeExternalLinks: true
     //options.honorRobotExclusions
 };
 
-var processLink = function(result, customData) {
-    process.stdout.write('Scanned ' + report.links.getTotal() + " urls.\r");
-    //console.log(result);
-    //console.log(report.printLine(result));
+var scannedUrls = 0;
 
-    if (
-        result.broken &&
-        result.html.attrs.rel !== 'dns-prefetch' &&
-        // LinkedIn throws non-official http error 999 if
-        // you try to access its urls directly.
-        result.http.response.statusCode !== 999
-    ) {
-        //console.log(result);
-        report.links.broken.push({
-            url: result.url.resolved,
-            reason: result.brokenReason,
-            base: result.base.resolved || null,
-            line: result.html.location.line
-        });
-        //console.log(report.links.broken);
+var processLink = function(result, customData) {
+    scannedUrls++;
+    process.stdout.write('Scanned ' + scannedUrls + " urls.\r");
+
+    if (scannedUrl.isBroken(result)) {
+        errorStack.push(result);
         return;
     }
-
-    report.links.valid++;
 };
 
 var finalize = function() {
-    console.log(report.getFinalReport());
+    console.log(report.getFinalReport(errorStack, scannedUrls));
 
-    if (report.links.getBroken()) {
-        service.send(report.getFinalReport());
+    if (errorStack.length) {
+        service.send(report.getFinalReport(errorStack, scannedUrls));
     }
 };
 
-var siteChecker = new blc.SiteChecker(options, {
+var siteChecker = new blc.SiteChecker(blcOptions, {
     link: processLink,
     end: finalize 
 });
