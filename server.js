@@ -12,15 +12,15 @@ if (!siteUrl) {
 
 var blcOptions = {
     filterLevel: 2,
-    //excludeExternalLinks: true
-    //options.honorRobotExclusions
+    honorRobotExclusions: false
 };
 
 var scannedUrls = 0;
 
 var processLink = function(result, customData) {
     scannedUrls++;
-    process.stdout.write('Scanned ' + scannedUrls + " urls.\r");
+    process.stdout.write('Scanned ' + scannedUrls +
+        " urls. Found " + errorStack.length + " broken links.\r");
 
     if (scannedUrl.isBroken(result)) {
         errorStack.push(result);
@@ -29,10 +29,11 @@ var processLink = function(result, customData) {
 };
 
 var finalize = function() {
-    console.log(report.getFinalReport(errorStack, scannedUrls));
+    var finalReport = report.getFinalReport(errorStack, scannedUrls);
+    console.log("\n" + finalReport);
 
     if (errorStack.length) {
-        service.send(report.getFinalReport(errorStack, scannedUrls));
+        service.send(finalReport);
     }
 };
 
