@@ -41,8 +41,35 @@ ____________________
    ```
 
 
-
 _Happy undead lynching!_ 💫
+
+
+
+## Usage in a cronjob
+
+1. Check out ZombieSnitch and install its dependencies with `npm i` in the directory itself.
+
+2. Create a shell script:
+
+   ```bash
+   export ZOMBIESNITCH_URL=https://example.com/
+   export ZOMBIESNITCH_SENTRY_URL=https://****:****@sentry.io/****
+   nodejs /my/path/to/zombiesnitch/server.js
+   ```
+
+3. Make the shell script executable: 
+
+   ```bash
+   $ chmod u+x my-shell-script.sh
+   ```
+
+4. Call the script in a cronjob (with `crontab -e`):
+
+   ```bash
+   2 0 * * * /my/path/to/my-shell-script.sh
+   ```
+
+   This would check for broken links every night at 2 am.
 
 ____________________
 
