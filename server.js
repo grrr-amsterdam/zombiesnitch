@@ -10,7 +10,10 @@ if (!siteUrl) {
     throw "No site url provided as environment variable. Please set ZOMBIESNITCH_URL.";
 }
 if (!process.env.ZOMBIESNITCH_SENTRY_URL) {
-    throw "No Sentry url provided as environment variable. Please set ZOMBIESNITCH_SENTRY_URL.";
+    console.error(
+        "No Sentry url provided as environment variable." +
+        "\nPlease set ZOMBIESNITCH_SENTRY_URL if you want error reporting in Sentry."
+    );
 }
 
 var blcOptions = {
@@ -35,7 +38,7 @@ var finalize = function() {
     var finalReport = report.getFinalReport(errorStack, scannedUrls);
     console.log("\n" + finalReport);
 
-    if (errorStack.length) {
+    if (errorStack.length && process.env.ZOMBIESNITCH_SENTRY_URL) {
         service.send(finalReport);
     }
 };
