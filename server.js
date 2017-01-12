@@ -36,7 +36,7 @@ var processLink = function(result, customData) {
 
 var finalize = function() {
     var finalReport = report.getFinalReport(errorStack, scannedUrls);
-    console.log("\n" + finalReport);
+    process.stdout.write("\n" + finalReport);
 
     if (errorStack.length && process.env.ZOMBIESNITCH_SENTRY_URL) {
         service.send(finalReport);
