@@ -1,5 +1,7 @@
 # ZombieSnitch ☠️
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/grrr-amsterdam/zombiesnitch.svg)](https://greenkeeper.io/)
+
 _Crawls your site, in search of dead links._
 
 [![Dependencies](https://david-dm.org/grrr-amsterdam/schoolwijzer-dead-link-checker.svg)](https://david-dm.org/grrr-amsterdam/schoolwijzer-dead-link-checker)
