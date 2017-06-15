@@ -17,6 +17,7 @@
   "homepage": "https://github.com/grrr-amsterdam/schoolwijzer-dead-link-checker#readme",
   "dependencies": {
     "broken-link-checker": "^0.7.3",
+    "greenkeeper-lockfile": "^1.6.0",
     "raven": "^0.12.1"
   }
 }
