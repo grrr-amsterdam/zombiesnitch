@@ -18,6 +18,6 @@
   "dependencies": {
     "broken-link-checker": "^0.7.3",
     "greenkeeper-lockfile": "^1.6.0",
-    "raven": "^0.12.1"
+    "raven": "^2.0.2"
   }
 }
