@@ -1,20 +1,20 @@
 {
-  "name": "schoolwijzer-dead-link-checker",
+  "name": "zombiesnitch",
   "version": "0.1.0",
-  "description": "Script to check dead links in the Schoolwijzer project, for the City of Amsterdam.",
+  "description": "Checking dead links in a site.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/grrr-amsterdam/schoolwijzer-dead-link-checker.git"
+    "url": "git+https://github.com/grrr-amsterdam/zombiesnitch.git"
   },
   "author": "David Spreekmeester <david@grrr.nl>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/grrr-amsterdam/schoolwijzer-dead-link-checker/issues"
+    "url": "https://github.com/grrr-amsterdam/zombiesnitch/issues"
   },
-  "homepage": "https://github.com/grrr-amsterdam/schoolwijzer-dead-link-checker#readme",
+  "homepage": "https://github.com/grrr-amsterdam/zombiesnitch#readme",
   "dependencies": {
     "broken-link-checker": "^0.7.3",
     "greenkeeper-lockfile": "^1.6.0",
