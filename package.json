@@ -16,6 +16,9 @@
     "url": "https://github.com/grrr-amsterdam/zombiesnitch/issues"
   },
   "homepage": "https://github.com/grrr-amsterdam/zombiesnitch#readme",
+  "bin": {
+    "zombiesnitch": "./server.js"
+  },
   "dependencies": {
     "broken-link-checker": "^0.7.3",
     "commander": "^2.11.0",
