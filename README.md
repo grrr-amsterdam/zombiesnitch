@@ -21,55 +21,18 @@ ____________________
 
 ## Usage
 
-1. Set the required environment variables in your shell or scripted context:
+```bash
+$ zombiesnitch https://example.com
+```
 
-   ```
-   ZOMBIESNITCH_URL = https://example.com/
-   ZOMBIESNITCH_SENTRY_URL = https://****:****@sentry.io/****
-   ```
+### With error reporting to Sentry.io
 
-2. Execute the node script:
-
-   ```
-   $ node server.js
-   ```
-
-   Or use `npm`:
-
-   ```
-   $ npm start
-   ```
+```bash
+$ zombiesnitch https://example.com https://****:****@sentry.io/****
+```
 
 
 _Happy undead lynching!_ 💫
-
-
-
-## Usage in a cronjob
-
-1. Check out ZombieSnitch and install its dependencies with `npm i` in the directory itself.
-
-2. Create a shell script:
-
-   ```bash
-   export ZOMBIESNITCH_URL=https://example.com/
-   export ZOMBIESNITCH_SENTRY_URL=https://****:****@sentry.io/****
-   nodejs /my/path/to/zombiesnitch/server.js
-   ```
-
-3. Make the shell script executable: 
-
-   ```bash
-   $ chmod u+x my-shell-script.sh
-   ```
-
-4. Call the script in a cronjob (with `crontab -e`):
-
-   ```bash
-   2 0 * * * /my/path/to/my-shell-script.sh
-   ```
-
-   This would check for broken links every night at 2 am.
 
 ____________________
 
