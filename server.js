@@ -1,9 +1,9 @@
 #! /usr/bin/env node
-var blc = require("broken-link-checker");
-var report = require("./lib/report.js");
-var service = require('./lib/service.js');
-var errorStack = require('./lib/error-stack.js');
-var scannedUrl = require('./lib/scanned-url.js');
+var blc         = require("broken-link-checker");
+var report      = require("./lib/report.js");
+var service     = require('./lib/service.js');
+var errorStack  = require('./lib/error-stack.js');
+var scannedUrl  = require('./lib/scanned-url.js');
 
 var siteUrl = process.env.ZOMBIESNITCH_URL;
 if (!siteUrl) {
