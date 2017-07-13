@@ -4,15 +4,25 @@ var report      = require("./lib/report.js");
 var service     = require('./lib/service.js');
 var errorStack  = require('./lib/error-stack.js');
 var scannedUrl  = require('./lib/scanned-url.js');
+const commander = require('commander')
 
-var siteUrl = process.env.ZOMBIESNITCH_URL;
+
+commander.arguments('<site> [sentry_url]')
+.action(function(site, sentry_url) {
+    siteUrl = site;
+    sentryUrl = sentry_url;
+});
+commander.parse(process.argv)
+
+console.log('Scanning ' + siteUrl)
+
 if (!siteUrl) {
-    throw "No site url provided as environment variable. Please set ZOMBIESNITCH_URL.";
+    throw "No site url provided. Please set the site url as first argument.";
 }
-if (!process.env.ZOMBIESNITCH_SENTRY_URL) {
+if (!sentryUrl) {
     console.error(
-        "No Sentry url provided as environment variable." +
-        "\nPlease set ZOMBIESNITCH_SENTRY_URL if you want error reporting in Sentry."
+        "No Sentry url provided." +
+        "\nYou can optionally set the Sentry DSN url as second argument for monitoring."
     );
 }
 
@@ -38,8 +48,8 @@ var finalize = function() {
     var finalReport = report.getFinalReport(errorStack, scannedUrls);
     process.stdout.write("\n" + finalReport);
 
-    if (errorStack.length && process.env.ZOMBIESNITCH_SENTRY_URL) {
-        service.send(finalReport);
+    if (errorStack.length && sentryUrl) {
+        service.send(finalReport, sentryUrl);
     }
 };
 
