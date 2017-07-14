@@ -1,6 +1,6 @@
 {
   "name": "zombiesnitch",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Checking dead links in a site.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
