@@ -15,20 +15,24 @@ It optionally reports to the [Sentry](https://sentry.io) error reporting service
 Note that we do _NOT_ honor Robot exclusions. This is not a bug, but a feature.
 It enables you to scan staging servers for dead links.
 
-
-
 ____________________
+
+## Installation
+
+```bash
+$ npm i -g zombiesnitch
+```
 
 ## Usage
 
 ```bash
-$ zombiesnitch https://example.com
+$ snitch https://example.com
 ```
 
 ### With error reporting to Sentry.io
 
 ```bash
-$ zombiesnitch https://example.com https://****:****@sentry.io/****
+$ snitch https://example.com https://****:****@sentry.io/****
 ```
 
 
