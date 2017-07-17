@@ -1,10 +1,10 @@
 #! /usr/bin/env node
-var blc         = require("broken-link-checker");
-var report      = require("./lib/report.js");
-var service     = require('./lib/service.js');
-var errorStack  = require('./lib/error-stack.js');
-var scannedUrl  = require('./lib/scanned-url.js');
-const commander = require('commander')
+const blc           = require("broken-link-checker");
+const report        = require("./lib/report.js");
+const service       = require('./lib/service.js');
+const errorStack    = require('./lib/error-stack.js');
+const scannedUrl    = require('./lib/scanned-url.js');
+const commander     = require('commander')
 
 
 commander.arguments('<site> [sentry_url]')
