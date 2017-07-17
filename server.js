@@ -1,9 +1,9 @@
 #! /usr/bin/env node
-const blc           = require("broken-link-checker");
-const report        = require("./lib/report.js");
-const service       = require('./lib/service.js');
-const errorStack    = require('./lib/error-stack.js');
-const scannedUrl    = require('./lib/scanned-url.js');
+const blc           = require("broken-link-checker")
+const report        = require("./lib/report.js")
+const service       = require('./lib/service.js')
+const errorStack    = require('./lib/error-stack.js')
+const scannedUrl    = require('./lib/scanned-url.js')
 const commander     = require('commander')
 
 
@@ -14,17 +14,20 @@ commander.arguments('<site> [sentry_url]')
 });
 commander.parse(process.argv)
 
-console.log('Scanning ' + siteUrl)
 
-if (!siteUrl) {
-    throw "No site url provided. Please set the site url as first argument.";
+if (typeof siteUrl === 'undefined') {
+    console.error("No site url provided. Please set the site url as first argument.")
+    process.exit(1)
 }
-if (!sentryUrl) {
+
+if (typeof sentryUrl === 'undefined') {
     console.error(
         "No Sentry url provided." +
         "\nYou can optionally set the Sentry DSN url as second argument for monitoring."
-    );
+    )
 }
+
+console.log('Scanning ' + siteUrl)
 
 var blcOptions = {
     filterLevel: 2,
